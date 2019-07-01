@@ -1,0 +1,5 @@
+<template name='popup_loading'>
+<!-- 进入遮罩  "shade_502_show  显示class " --------  "shade_502_conceal  隐藏class" -->
+<view  class="shade_502 middle_array donghua  {{popup_loading=='begin_loading'? 'shade_502_show': ''}}  {{popup_loading =='end_loading'? 'shade_502_conceal': ' '}}" >
+</view>
+</template>

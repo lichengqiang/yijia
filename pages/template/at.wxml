@@ -1,0 +1,52 @@
+<template name='at'>
+  <view class="ait_position left_array" catchtap='rouse_at'>
+    <view class="ap_background middle_array fn_bloud bc_special fc_white">@</view>
+    <view class="head_portrait" wx:for='{{at_headimg}}' wx:key="index" wx:if='{{index<3}}'>
+      <image class="head_portrait1" mode="aspectFill" src="{{item}}"></image>
+    </view>
+    <view class="" hidden='{{at_headimg.length < 3}}'>...</view>
+  </view>
+  <view class="newly_builds {{aitehide?'call_sbmain1':'call_sbmain'}}">
+    <scroll-view scroll-x="true" class="call_sb">
+      <view class="avatar_selection left_array">
+        <view class="updown_array as_vertical" catchtap='aiteall' data-attr_name='{{action_create}}'>
+          <view class="head_portrait">
+            <view class="No_avatar updown_array">
+              <view class="a_head"></view>
+              <view class="shoulder"></view>
+            </view>
+            <!--duihao  -->
+            <view class="choice_icon  {{all_at?'':'dn'}}">
+              <view class="right_icon1">
+                <view class="complete bc_white"></view>
+                <view class="complete1 bc_white"></view>
+              </view>
+            </view>
+          </view>
+          <view class="fc_light name_value restricted_single">@所有人</view>
+        </view>
+        <view class="updown_array as_vertical" wx:for='{{member}}' wx:key="index" data-id='{{item.id}}' data-content='{{action_create}}' style='position: relative;'>
+          <form bindsubmit="aiteta" report-submit='true' class='formclass' data-id='{{item.id}}' data-content='{{action_create}}'>
+            <button formType="submit" class='formclass'></button>
+          </form>
+          <view class="head_portrait">
+            <image class="head_portrait1" mode="aspectFill" src="{{item.headimgurl}}"></image>
+            <!--duihao  -->
+            <view class="choice_icon  {{!item.isaite?'dn':''}}">
+              <view class="right_icon1">
+                <view class="complete bc_white"></view>
+                <view class="complete1 bc_white"></view>
+              </view>
+
+            </view>
+          </view>
+          <view class="fc_light name_value restricted_single">{{item.nickname}}</view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="backspace_button middle_array" catchtap='hideaite' style='z-index:9;'>
+      <view class="backspace_arrow"></view>
+    </view>
+
+  </view>
+</template>

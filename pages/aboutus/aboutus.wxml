@@ -1,0 +1,75 @@
+<!-- <view class="tab_switch left_array">
+  <view class="newly_builds {{switch_tab==0?'ts_button':''}}"></view>
+  <view class="newly_builds {{switch_tab==1?'ts_button':''}}"></view>
+</view> -->
+<import src="../template/notebook.wxml" />
+<view class="home newly_builds">
+  <!--toubu-->
+  <view class="home_head home_margin about_array">
+    <view class="title fc_main">关于忆加</view>
+  </view>
+  <view class="about_top pr updown_array">
+    <image class='head_portrait1' mode="aspectFill" src='../../images/background_img.jpg'></image>
+    <image class="at_logo pr" mode="aspectFill" src='../../images/icon_logo.jpg'></image>
+    <image class="at_wisdom pr" mode="aspectFill" src='../../images/wisdom_icon.png'></image>
+  </view>
+  <view class="fn_name fc_light1 about_text">
+    <view class="fn_bloud fc_black">忆加</view>
+    <view>一款基于微信关系</view>
+    <view>帮助您和其他人一同记忆</view>
+    <view>您可以分享记忆档案</view>
+    <view>给一位朋友，或者一个群</view>
+    <view>在这个记忆档案中</view>
+    <view>每个人都可以新增记忆</view>
+    <view>都可以更改已有记忆的状态</view>
+    <view class="fn_bloud fc_black">忆加</view>
+    <view>可以做什么？</view>
+    <view>共同添加项目中存在的问题并加以解决</view>
+    <view>共同头脑风暴</view>
+    <view>共同记录一场沉闷的会议</view>
+    <view>共同完成一部小说，文字，心情</view>
+    <view>共同天马行空出伟大的天才创意</view>
+    <view>还有，它只是个小程序</view>
+  </view>
+  <view class="about_top1 pr updown_array bc_green">
+    <view class="fn_name fc_light1 about_text">
+      <view class="fn_bloud fc_whide">意见建议</view>
+      <view class="fc_whide">关注我们公众号反馈相关意见</view>
+      <view class="fc_whide"> 群记事公众号</view>
+    </view>
+  </view>
+</view>
+<!--使用帮助  -->
+<view class="share_spacing">
+  <view class="floating_left updown_array">
+    <view class="pr" catchtap='close_handbook'>
+      <view class="cb_question middle_array" style="width:100rpx;height:100rpx;">
+        <text style="font-size:42rpx;">?</text>
+      </view>
+    </view>
+    <view class="fn_connect bc_light"></view>
+    <view class="fn_text fc_light">点击查看使用帮助</view>
+  </view>
+</view>
+<!--分享  -->
+
+<view class="share_spacing">
+  <view class="floating_left updown_array">
+    <view class="floating_button updown_array bc_superlight">
+      <view class="pl_button">
+        <view class="share_icon">
+          <view class="share_complete bc_ash"></view>
+          <view class="share_complete1 bc_ash"></view>
+        </view>
+        <!--quan  -->
+        <view class="circle1 bc_superlight"></view>
+        <view class="circle2 bc_superlight"></view>
+        <view class="circle3 bc_superlight"></view>
+      </view>
+      <button open-type="share" class='lbli_tz button_no'></button>
+    </view>
+    <view class="fn_connect bc_light"></view>
+    <view class="fn_text fc_light">分享</view>
+  </view>
+</view>
+<template is="notebook" data="{{the_first_landing,current,index:1,button_hidden:true}}" />

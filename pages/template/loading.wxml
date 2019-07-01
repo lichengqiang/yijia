@@ -1,0 +1,5 @@
+<template name='loading'>
+ <view  wx:if="{{isShowLoading}}" class="loading_box middle_array"> 
+    <image mode="aspectFill" src='../../images/loading.png'  class="loading_img"></image>
+ </view>
+</template>

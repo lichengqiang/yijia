@@ -1,0 +1,342 @@
+<import src="../template/twobutton.wxml" />
+<import src="../template/at.wxml" />
+<import src="../template/notebook.wxml" />
+<import src="../template/first.wxml" />
+<import src="../template/describeTemplate.wxml" />
+<import src="../template/toOtherApp.wxml" /> 
+<import src="../template/loading.wxml" /> 
+<view class=" {{lbtab1?'':'vague '}} {{tankuanghide?'':'vague'}} {{lbtab11?'':'vague'}} {{the_first_landing?'vague':''}} {{first_img?'vague':''}}">
+  <!--Android  -->
+  <block wx:if='{{Android}}'>
+    <view class="home project_hand">
+      <!--背景  -->
+      <view class="dynamic_back">
+        <view class="vague2">
+          <view class="db_circular1 {{Android?'android_anination1':'iphone_anination1'}}"></view>
+          <view class="db_circular2 {{Android?'android_anination2':'iphone_anination2'}}"></view>
+          <view class="db_circular3 {{Android?'android_anination3':'iphone_anination3'}}"></view>
+          <view class="white_mask"></view>
+        </view>
+      </view>
+      <view class="project_title fc_light heightguodu opacity_none text" catchlongpress='logtitle' id='top_title' data-useid='{{initdata.project_user_id}}'>
+        {{initdata.content}}
+      </view>
+      <view class="right_array project_tab">
+        <view class="background_tab bc_green newly_builds {{tab1?'bt_animation':'bt_animation1'}}"></view>
+        <!--进行中  -->
+        <view class="middle_array " catchtap='tabing'>
+          <view class="pt_icon {{tab1?'full_framewhite':'full_framelight'}}">
+            <view class="conduct con_android {{tab1?'bc_white':'bc_ash'}}"></view>
+            <view class="conduct1 {{tab1?'bc_white':'bc_ash'}}"></view>
+          </view>
+          <view class="pt_text {{tab1?'ptt_whide':'ptt_ash'}}">进行中</view>
+        </view>
+        <!--已完成  -->
+        <view class=" middle_array " catchtap='tabed'>
+          <view class="pt_icon {{tab1?'full_framelight':'full_framewhite'}}">
+            <view class="right_icon1">
+              <view class="complete {{tab1?'bc_ash':'bc_white'}}"></view>
+              <view class="complete1 {{tab1?'bc_ash':'bc_white'}}"></view>
+            </view>
+          </view>
+          <view class="pt_text {{tab1?'ptt_ash':'ptt_whide'}}">已完成</view>
+        </view>
+      </view>
+    </view>
+    <view style='width:100vw;overflow:hidden;'>
+      <view class="animantw newly_builds {{tab1?'':'tabanimate'}}">
+        <!--内容  -->
+        <scroll-view class="main_text" scroll-y="{{scrolltab1}}" bindscroll="scrolling" data-y='y1'>
+          <view class="tac" wx:if='{{initdata.notcomplete.length==0}}'>
+            <view class="contentno_build" catchtap='floating_new'>
+              <view class="floating_button1 updown_array bc_young">
+                <view class="pl_button">
+                  <view class="plus_transverse"></view>
+                  <view class="plus_vertical"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="project_list">
+            <!--普通内容  -->
+            <view class="home about_array aa_key" wx:for='{{initdata.notcomplete}}' wx:key="index">
+              <navigator hover-class="hover_hui" class="lbli_tz" url='/pages/details/details?action_id={{item.id}}&project_id={{project_id}}'>
+                <form bindsubmit="acquire" report-submit='true' class='formclass'>
+                  <button formType="submit" class='formclass' catchlongpress='copy' data-key='{{index}}' data-attr='notcomplete'></button>
+                </form>
+              </navigator>
+              <view class="about_array one_content fc_main">
+                <!-- <view class="left_spot bc_green" wx:if='{{item.status==1}}'></view>
+                <view wx:else>
+                  <view class="left_spot bc_red " wx:if='{{item.isat==1}}'></view>
+                  <view class="left_spot bc_yellow" wx:else></view>
+                </view> -->
+                <view class="comment_inner text fc_light" wx:if='{{item.status==1}}'>{{item.content}}
+                  <block wx:for='{{item.atusers}}' wx:key="index">@{{initdata.users[item].nickname}}</block>
+                </view>
+                <view wx:else class="comment_inner text">{{item.content}}
+                  <block wx:for='{{item.atusers}}' wx:key="index">@{{initdata.users[item].nickname}}</block>
+                </view>
+              </view>
+              <!--我完成的内容 -->
+              <view class="regular_callout middle_array bc_green op_03" catchtap='tankuanghide' wx:if='{{item.status==1}}' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'>
+                <view class="right_dh">
+                  <view class="right_icon2">
+                    <view class="ri_complete bc_white"></view>
+                    <view class="ri_complete1 bc_white"></view>
+                  </view>
+                </view>
+              </view>
+              <block wx:else>
+                <!-- @我的内容 -->
+                <view class="regular_callout bc_red" wx:if='{{item.isat==1}}' catchtap='tankuanghide' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'>
+                </view>
+                <!-- 进行中的内容 -->
+                <view class="regular_callout bc_light" wx:else catchtap='tankuanghide' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'>
+                </view>
+              </block>
+              <view class="click_trigger" catchtap='tankuanghide' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'></view>
+              <!--时间  -->
+              <view class="main_time fc_chaoh bc_white">{{item.time}}</view>
+              <view hidden='{{item.copey_hidden}}' data-key='{{index}}' data-content='{{item.content}}' data-attr='notcomplete' catchtap='confirm_copy' class='copy'>复制</view>
+            </view>
+          </view>
+        </scroll-view>
+        <!--完成  -->
+        <scroll-view class="main_text" scroll-y="{{scrolltab2}}" bindscroll="scrolling" data-y='y2'>
+
+          <view class="project_list">
+            <!--我完成的内容 -->
+            <view class="home about_array aa_key" wx:for='{{initdata.complete}}' wx:key="index">
+              <navigator hover-class="hover_hui" class="lbli_tz" url='/pages/details/details?action_id={{item.id}}&project_id={{project_id}}'>
+                <form bindsubmit="acquire" report-submit='true' class='formclass'>
+                  <button formType="submit" class='formclass' catchlongpress='copy' data-key='{{index}}' data-attr='complete'></button>
+                </form>
+              </navigator>
+              <view class="about_array one_content fc_main">
+                <!-- <view class="left_spot bc_green"></view> -->
+                <view class="comment_inner fc_light text">{{item.content}}
+                  <block wx:for='{{item.atusers}}' wx:key="index">@{{initdata.users[item].nickname}}</block>
+                </view>
+              </view>
+              <view class="regular_callout middle_array bc_green" catchtap='tankuanghide' wx:if='{{item.status==2}}' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'>
+                <view class="right_dh">
+                  <view class="right_icon2">
+                    <view class="ri_complete bc_white"></view>
+                    <view class="ri_complete1 bc_white"></view>
+                  </view>
+                </view>
+              </view>
+              <view class="click_trigger" catchtap='tankuanghide' wx:if='{{item.status==2}}' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'></view>
+              <view class="main_time fc_chaoh bc_white">{{item.time}}</view>
+              <view hidden='{{item.copey_hidden}}' data-key='{{index}}' data-content='{{item.content}}' data-attr='complete' catchtap='confirm_copy' class='copy'>复制</view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </block>
+  <!--iphone  -->
+  <block wx:else>
+    <scroll-view class="roll">
+      <view class="home project_hand">
+        <!--背景  -->
+        <view class="dynamic_back">
+          <view class="vague2">
+            <view class="db_circular1 {{Android?'android_anination1':'iphone_anination1'}}"></view>
+            <view class="db_circular2 {{Android?'android_anination2':'iphone_anination2'}}"></view>
+            <view class="db_circular3 {{Android?'android_anination3':'iphone_anination3'}}"></view>
+            <view class="white_mask"></view>
+          </view>
+        </view>
+        <view class="project_title fc_light heightguodu {{toption?'':'height0'}} opacity_none" catchlongpress='logtitle' id='top_title' data-useid='{{initdata.project_user_id}}'>
+          {{initdata.content}}
+        </view>
+        <view class="right_array project_tab">
+          <view class="background_tab bc_green newly_builds {{tab1?'bt_animation':'bt_animation1'}}"></view>
+          <!--进行中  -->
+          <view class="middle_array " catchtap='tabing'>
+            <view class="pt_icon {{tab1?'full_framewhite':'full_framelight'}}">
+              <view class="conduct {{tab1?'bc_white':'bc_ash'}}"></view>
+              <view class="conduct1 {{tab1?'bc_white':'bc_ash'}}"></view>
+            </view>
+            <view class="pt_text {{tab1?'ptt_whide':'ptt_ash'}}">进行中</view>
+          </view>
+          <!--已完成  -->
+          <view class=" middle_array " catchtap='tabed'>
+            <view class="pt_icon {{tab1?'full_framelight':'full_framewhite'}}">
+              <view class="right_icon1">
+                <view class="complete {{tab1?'bc_ash':'bc_white'}}"></view>
+                <view class="complete1 {{tab1?'bc_ash':'bc_white'}}"></view>
+              </view>
+            </view>
+            <view class="pt_text {{tab1?'ptt_ash':'ptt_whide'}}">已完成</view>
+          </view>
+        </view>
+      </view>
+      <view style='width:100vw;overflow:hidden;'>
+        <view class="animantw newly_builds {{tab1?'':'tabanimate'}}">
+          <!--内容  -->
+          <scroll-view class="main_text" scroll-y="true" bindscroll="scrolling" data-y='y1'>
+            <view class="tac" wx:if='{{initdata.notcomplete.length==0}}'>
+              <view class="contentno_build" catchtap='floating_new'>
+                <view class="floating_button1 updown_array bc_young">
+                  <view class="pl_button">
+                    <view class="plus_transverse"></view>
+                    <view class="plus_vertical"></view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="project_list">
+              <!--普通内容  -->
+              <view class="home about_array aa_key" wx:for='{{initdata.notcomplete}}' wx:key="index">
+                <navigator hover-class="hover_hui" class="lbli_tz" url='/pages/details/details?action_id={{item.id}}&project_id={{project_id}}'>
+                  <form bindsubmit="acquire" report-submit='true' class='formclass'>
+                    <button formType="submit" class='formclass' catchlongpress='copy' data-key='{{index}}' data-attr='notcomplete'></button>
+                  </form>
+                </navigator>
+                <view class="about_array one_content fc_main">
+                  <!-- <view class="left_spot bc_green" wx:if='{{item.status==1}}'></view>
+                  <view wx:else>
+                    <view class="left_spot bc_red " wx:if='{{item.isat==1}}'></view>
+                    <view class="left_spot bc_yellow" wx:else></view>
+                  </view> -->
+                  <view class="comment_inner text fc_light" wx:if='{{item.status==1}}'>{{item.content}}
+                    <block wx:for='{{item.atusers}}' wx:key="index">@{{initdata.users[item].nickname}}</block>
+                  </view>
+                  <view wx:else class="comment_inner text">{{item.content}}
+                    <block wx:for='{{item.atusers}}' wx:key="index">@{{initdata.users[item].nickname}}</block>
+                  </view>
+                </view>
+                <!--我完成的内容 -->
+                <view class="regular_callout middle_array bc_green op_03" catchtap='tankuanghide' wx:if='{{item.status==1}}' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'>
+                  <view class="right_dh">
+                    <view class="right_icon2">
+                      <view class="ri_complete bc_white"></view>
+                      <view class="ri_complete1 bc_white"></view>
+                    </view>
+                  </view>
+                </view>
+                <block wx:else>
+                  <!-- @我的内容 -->
+                  <view class="regular_callout bc_red" wx:if='{{item.isat==1}}' catchtap='tankuanghide' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'>
+                  </view>
+                  <!-- 进行中的内容 -->
+                  <view class="regular_callout bc_light" wx:else catchtap='tankuanghide' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'>
+                  </view>
+                </block>
+                <view class="click_trigger" catchtap='tankuanghide' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'></view>
+                <view class="main_time fc_chaoh bc_white">{{item.time}}</view>
+                <view hidden='{{item.copey_hidden}}' data-key='{{index}}' data-content='{{item.content}}' data-attr='notcomplete' catchtap='confirm_copy' class='copy'>复制</view>
+              </view>
+            </view>
+          </scroll-view>
+          <!--完成  -->
+          <scroll-view class="main_text" scroll-y="true" bindscroll="scrolling" data-y='y2'>
+            <view class="project_list">
+              <!--我完成的内容 -->
+              <view class="home about_array aa_key" wx:for='{{initdata.complete}}' wx:key="index">
+                <navigator hover-class="hover_hui" class="lbli_tz" url='/pages/details/details?action_id={{item.id}}&project_id={{project_id}}'>
+                  <form bindsubmit="acquire" report-submit='true' class='formclass'>
+                    <button formType="submit" class='formclass' catchlongpress='copy' data-key='{{index}}' data-attr='complete'></button>
+                  </form>
+                </navigator>
+                <view class="about_array one_content fc_main">
+                  <view class="comment_inner fc_light text">{{item.content}}
+                    <block wx:for='{{item.atusers}}' wx:key="index">@{{initdata.users[item].nickname}}</block>
+                  </view>
+                </view>
+                <view class="regular_callout middle_array bc_green" catchtap='tankuanghide' wx:if='{{item.status==2}}' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'>
+                  <view class="right_dh">
+                    <view class="right_icon2">
+                      <view class="ri_complete bc_white"></view>
+                      <view class="ri_complete1 bc_white"></view>
+                    </view>
+                  </view>
+                </view>
+                <view class="click_trigger" catchtap='tankuanghide' wx:if='{{item.status==2}}' data-action_id='{{item.id}}' data-user_id='{{item.user_id}}' data-current_problem='{{item}}'></view>
+                <view class="main_time fc_chaoh bc_white">{{item.time}}</view>
+                <view hidden='{{item.copey_hidden}}' data-key='{{index}}' data-content='{{item.content}}' data-attr='complete' catchtap='confirm_copy' class='copy'>复制</view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+    </scroll-view>
+  </block>
+
+  <!--漂浮背景  -->
+  <view class="floating_background"></view>
+  <!--漂浮按钮  -->
+  <view class="floating_new updown_array" catchtap='floating_new' hidden='{{new_button}}'>
+    <view class="floating_button updown_array bc_young">
+      <view class="pl_button">
+        <view class="plus_transverse"></view>
+        <view class="plus_vertical"></view>
+      </view>
+    </view>
+    <view class="fn_connect bc_light"></view>
+    <view class="fn_text fc_light">新建记忆</view>
+  </view>
+  <view class="{{new_button?'floating_new':'floating_left'}} updown_array" wx:if='{{checked && version != 2}}'>
+    <view class="floating_button updown_array bc_superlight">
+      <view class="pl_button">
+        <view class="share_icon">
+          <view class="share_complete bc_ash"></view>
+          <view class="share_complete1 bc_ash"></view>
+        </view>
+        <!--quan  -->
+        <view class="circle1 bc_superlight"></view>
+        <view class="circle2 bc_superlight"></view>
+        <view class="circle3 bc_superlight"></view>
+      </view>
+      <button open-type="share" class='lbli_tz button_no'></button>
+    </view>
+    <view class="fn_connect bc_light"></view>
+    <view class="fn_text fc_light">分享</view>
+  </view>
+  <!--还原  -->
+  <view class="restore_delete middle_array bc_red" catchtap='revivification' wx:if='{{revivification}}'>
+    <view class="trash" style="position:relative;height:55rpx;">
+      <view class="updown_array ">
+        <view class="trash_top "></view>
+        <view class="trash_center "></view>
+        <view class="trash_bottom ">
+          <view class="trash_bottom1 "></view>
+        </view>
+      </view>
+    </view>
+    <view class="fc_whide fn_name" style="margin-left:20rpx;">
+      该项目已删除，点击还原
+    </view>
+  </view>
+</view>
+
+<!--新建  -->
+<!-- <view class="newly_build tb_white {{lbtab1?'toumingdu':'toumingdu1'}}">
+  <view class="nb_input">
+    <textarea focus="{{true}}" bindfocus="small" bindblur="select" placeholder="输入您的记忆" fixed="true" maxlength="-1" bindinput='aite' auto-focus="true" wx:if="{{!lbtab1}}" data-content='action_create' value=''></textarea>
+  </view>
+
+  <template is="twoButton" data="{{focuslb,focuslbss,close_xinjian,publish,l:'action',b:'create',createName:'action_create'}}" />
+
+  <template is="at" data="{{aitehide,aiteall,action_create:'action_create',aiteta,member,hideaite,at_name,all_at:action_create_at_all,at_headimg}}" />
+</view> -->
+
+<!--新建-->
+<template is="describe" data="{{lbtab1,small,select,aite,actionextre_create_content:'',aitehide,aiteta,member,hideaite,actionextre_create_imgs:action_create_imgs,upLoadImg,focuslb,focuslbss,close_xinjian,publish,l:'action',b:'create',createName:'action_create',at_name,all_at:action_create_at_all,dele_btn:action_create_dele_btn,at_headimg,jiahao,uploadFileAction,uploadTypeBox,handelShowUploadBox, files: action_create_files,start_record,stop_record,play_record}}"
+/>
+<!--选择  -->
+<include src="../template/stateLayer.wxml" />
+<!--新建  修改项目-->
+<include src="../template/title.wxml" />
+<!--改版弹出页  -->
+<template is="first" data="{{first_img}}" />
+<template is="loading" data="{{isShowLoading}}" />
+<template is="notebook" data="{{the_first_landing,current,index:1,go_back_index: true}}" />
+<template is="toOtherApp" data="{{is_to_other_app,big_img,mode,pic}}" />
+<import src="../template/502.wxml" />
+<template is="502" data="{{isNet,reload}}" />
+<import src="../template/popup_loading.wxml" />
+<template is="popup_loading" data="{{popup_loading}}" />

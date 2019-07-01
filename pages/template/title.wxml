@@ -1,0 +1,62 @@
+<import src="../template/twobutton.wxml" />
+<!-- 新建 -->
+<view class="newly_build tb_white {{lbtab11?'toumingdu':'toumingdu1'}}">
+  <view class="nb_input">
+    <textarea bindfocus="smalla" bindblur="selecta" placeholder="输入您的记忆档案名" fixed="true" maxlength="-1" wx:if="{{!lbtab11}}" data-attrname='{{createName}}' bindinput='enterContent' value='{{textvalue}}'></textarea>
+  </view>
+  <scroll-view scroll-y="true" class="nb_addto">
+    <view class="home left_array with_others fc_light">
+      <view class="yj_{{choseColor2}} color-box-size new_project" catchtap="openColorBox2"></view>
+      <block wx:if='{{jurisdiction}}'>
+        <switch id="share" type="checkbox" checked bindchange="switch1Change" data-attrname='{{createName}}' wx:if='{{share_text=="1"}}' />
+        <switch id="share" type="checkbox" bindchange="switch1Change" data-attrname='{{createName}}' wx:else />
+        <label for='share'>{{share_text=='1'?'已开启他人分享':'未开启分享'}}</label>
+      </block>
+      <view class="problem_tips" catchtap='question'>?</view>
+    </view>
+  </scroll-view>
+  <!-- 选择按钮 -->
+  <template is="twoButton" data="{{focuslb:focuslba,focuslbss:focuslbssa,close_xinjian:'close_xinjian1',publish,l,b,createName,update_index:true}}" />
+  <!-- 漂浮介绍 -->
+  <view class="problem_explanation" hidden='{{explanation}}'>
+    <view class="pe_box">
+      <view class="title fc_main about_array">
+        <view>什么是他人分享</view>
+        <icon type="clear" size="30" color="#666" catchtap='question_close' />
+      </view>
+      <view class="pe_text fn_main fc_light1">
+        <view>开启他人分享后，该记忆档案也可以由他人进行分享传播。并且由他人传播所加入的人员也可以分享并使用。</view>
+        <view class="pe_open about_array">
+          <view class="peo_circular bc_young"></view>
+          <view class="peo_straight bc_light">
+            <view class="tac fc_light fn_text ps_share">分享</view>
+          </view>
+          <view class="peo_circular bc_yellow"></view>
+          <view class="peo_straight bc_light">
+            <view class="tac fc_light fn_text ps_share">分享</view>
+          </view>
+          <view class="peo_circular bc_gold"></view>
+        </view>
+        <view>而关闭他人分享后只能由您本人进行分享传播</view>
+        <view class="pe_open about_array">
+          <view class="peo_circular bc_young"></view>
+          <view class="peo_straight bc_light">
+            <view class="tac fc_light fn_text ps_share">分享</view>
+          </view>
+          <view class="peo_circular bc_yellow"></view>
+          <view class="peo_straight">
+            <view class="peo_prohibit"></view>
+          </view>
+          <view class="peo_circular bc_gold"></view>
+        </view>
+        <view>凡是加入该记忆档案的人员都有权限修改或添加一些内容</view>
+      </view>
+    </view>
+  </view>
+  <!-- 颜色组 -->
+  <view class="color-box" wx:if="{{isShowColorBox2}}">
+    <view class="color-type new_project_type left_array" >
+      <view class="{{item.colorClass}} color-box-size" wx:for="{{searchType}}" wx:key="index" data-color="{{item.color}}" catchtap="handelChoseColor2"></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,145 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.6.0",
+	"appid": "wx5b6e4d39c50f7d2a",
+	"projectname": "yijia",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 8,
+			"list": [
+				{
+					"id": -1,
+					"name": "关于",
+					"pathName": "pages/aboutus/aboutus",
+					"query": "",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "阿萨德",
+					"pathName": "pages/details/details",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "1",
+					"pathName": "pages/project/project",
+					"query": "",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "UD93ayTH3eBEjOP9utfPHwcFItfscZSaWbw7RTeIvnA@cr4dev",
+						"shareKey": "ss6GVMIO8H3nbanaQY8jVr_j6mwlRyH8l81lOLf6zz8GMwgM9Mr-1OmmMIxjgqdbRTmkHHNKWgAEsLS-B17hvg~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "模拟进去",
+					"pathName": "pages/project/project",
+					"query": "project_id=2",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群1",
+						"shareName": "UD93ayTH3eBEjOP9utfPHyURsRCnDqkfOb7NnnkzgGs@cr4dev",
+						"shareKey": "j-OE5cC82g2OJhzUkMuIp0TR9pD70FCEoIuvIAPaTFIQRILlZMFT4PLIBhFj0R2bOrObxzAo2-bDSG1vVqogrg~~"
+					}
+				},
+				{
+					"id": 4,
+					"name": "2",
+					"pathName": "pages/project/project",
+					"query": "project_id=3112",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "3",
+					"pathName": "pages/details/details",
+					"query": "action_id=254&project_id=1"
+				},
+				{
+					"id": 6,
+					"name": "2222",
+					"pathName": "pages/project/project",
+					"query": "project_id=3100",
+					"scene": 1044
+				},
+				{
+					"id": -1,
+					"name": "阿斯蒂芬阿发",
+					"pathName": "pages/project/project",
+					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "详情",
+					"pathName": "pages/details/details",
+					"query": "action_id=1739&project_id=1",
+					"scene": 1044,
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "UD93ayTH3eBEjOP9utfPHwcFItfscZSaWbw7RTeIvnA@cr4dev",
+						"shareKey": "ss6GVMIO8H3nbanaQY8jVr_j6mwlRyH8l81lOLf6zz8GMwgM9Mr-1OmmMIxjgqdbRTmkHHNKWgAEsLS-B17hvg~~"
+					}
+				},
+				{
+					"id": 9,
+					"name": "pc登录",
+					"pathName": "pages/pclogin/pclogin",
+					"query": "id=123&name=flewsea",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "UD93ayTH3eBEjOP9utfPHwcFItfscZSaWbw7RTeIvnA@cr4dev",
+						"shareKey": "ss6GVMIO8H3nbanaQY8jVr_j6mwlRyH8l81lOLf6zz8GMwgM9Mr-1OmmMIxjgqdbRTmkHHNKWgAEsLS-B17hvg~~"
+					}
+				},
+				{
+					"id": 10,
+					"name": "pc登录",
+					"pathName": "pages/pclogin/pclogin",
+					"query": "id=123&name=flewsea&device=7",
+					"scene": 1011
+				},
+				{
+					"id": -1,
+					"name": "pc登录",
+					"pathName": "pages/pclogin/pclogin",
+					"query": "device=7",
+					"scene": 1011
+				},
+				{
+					"id": -1,
+					"name": "搜索页",
+					"pathName": "pages/search/search",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

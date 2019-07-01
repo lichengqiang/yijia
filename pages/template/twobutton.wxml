@@ -1,0 +1,33 @@
+<!--选择按钮 -->
+<template name="twoButton">
+  <view class=" about_array select_button newly_builds {{focuslb?'':'select_small'}}">
+    <view class="plain_button updown_array pr" catchtap=''>
+      <form bindsubmit="publish" report-submit='true' class='formclass' data-l='{{l}}' data-color='{{choseColor2}}' data-b='{{b}}' data-createName='{{createName}}' data-close_xinjian='{{close_xinjian}}' data-update_index='{{update_index}}'>
+        <button formType="submit" class='formclass'></button>
+      </form>
+      <view class="floating_button updown_array bc_green">
+        <view>
+          <view class="right_icon"></view>
+        </view>
+      </view>
+      <view class="plain_button updown_array complete_text" hidden='{{!focuslbss}}'>
+        <view class="fn_connect bc_light"></view>
+        <view class="fn_text fc_light">确认记忆</view>
+      </view>
+    </view>
+    <view class="plain_button updown_array pr" catchtap='{{close_xinjian}}'>
+      <form bindsubmit="{{close_xinjian}}" report-submit='true' class='formclass'>
+        <button formType="submit" class='formclass'></button>
+      </form>
+      <view class="floating_button updown_array bc_black">
+        <view>
+          <view class="wrong_icon"></view>
+        </view>
+      </view>
+      <view class="plain_button updown_array complete_text" hidden='{{!focuslbss}}'>
+        <view class="fn_connect bc_light"></view>
+        <view class="fn_text fc_light">关闭</view>
+      </view>
+    </view>
+  </view>
+</template>

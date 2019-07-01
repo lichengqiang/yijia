@@ -1,0 +1,14 @@
+<template name='toOtherApp'>
+  <view class="weixin_tc ty_animation_time  weixin_tc_xs {{is_to_other_app?'vanish':'vanishs'}}">
+    <view style="font-size:32rpx;padding-top:30rpx;">新的小程序二维码</view>
+    <view class="ty_left_array ty_js weixin_tc_img" wx:if="{{mode == 2}}">
+      <image class="ty_xsx" src="{{pic}}" mode="widthFix" style="height:auto;" bindtap="big_img" data-qrcode="{{pic}}"></image>
+      <view>点击左侧图片查看二维码并长按识别二维码，进入新的小程序<label >，也可以点击下方按钮进入新的小程序</label></view>
+    </view>
+    <!-- <view style="font-size:32rpx;padding-top:30rpx;" > 发布者微信号</view> -->
+    <view class="weixin_tc_text" wx:if="{{mode == 1}}">
+      <view class="ty_ta_c"></view>
+      <view bindtap="toOtherApp" data-appid="wxbdc05488b4bce557">点击跳转到新的小程序</view>
+    </view>
+  </view>
+</template>

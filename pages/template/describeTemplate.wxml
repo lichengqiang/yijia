@@ -1,0 +1,44 @@
+<import src="./twobutton.wxml" />
+<import src="./imgs.wxml" />
+<import src="./imgs_del.wxml" />
+<import src="./at.wxml" />
+<template name='describe'>
+   <view class="newly_build tb_white {{lbtab1?'toumingdu':'toumingdu1'}}">
+      <view class="nb_input">
+         <textarea bindfocus="small" bindblur="select" placeholder="补充本条记忆" fixed="true" maxlength="-1" bindinput='aite' wx:if="{{!lbtab1}}" data-content='{{createName}}' value='{{actionextre_create_content}}'>
+         </textarea>
+         <!-- <view catchtap="start_record">开始录音</view>
+         <view catchtap="stop_record">停止录音</view>
+         <view catchtap="play_record">播放录音</view> -->
+      </view>
+      <!--@效果  -->
+      <template is="at" data="{{aitehide,aiteall,action_create:createName,aiteta,member,hideaite,at_name,all_at,at_headimg}}" />
+      <scroll-view scroll-y="true" class="nb_addto" wx:if='{{jiahao}}'>
+         <!--添加图片  -->
+         <view class="add_picture about_array">
+            <template is="imgs_del" data="{{imgs:actionextre_create_imgs,upLoadImg,createName,dele_btn,uploadFileAction,uploadTypeBox,handelShowUploadBox,files,deleteFiles2,showDeleteBox2}}" />
+         </view>
+      </scroll-view>
+      <!-- 选择上传 -->
+      <view wx:if="{{uploadTypeBox}}" class="uploading_select middle_array" catchtap="hideUploadTypeBox">
+         <!-- 遮罩 -->
+         <view class="uploading_select_shade" catchtap="hideUploadTypeBox"></view>
+         <!--  -->
+         <view catchtap='upLoadImg' data-content='{{createName}}'>
+            <view class="uploading_select_img uploading_select_img_lv middle_array">
+               <image mode="widthFix" style="height:auto;" src="../../images/image_icon.png"></image>
+            </view>
+            <view>上传图片</view>
+         </view>
+         <view catchtap="uploadFileAction" data-content='{{createName}}'>
+            <view class="uploading_select_img middle_array">
+               <image mode="widthFix" style="height:auto;" src="../../images/file_icon.png"></image>
+            </view>
+            <view>上传文件</view>
+         </view>
+      </view>
+      <!-- <image src='/images/audio.png' style='width:160rpx;height:160rpx;' catchtouchstart='start' catchtouchend='end' catchtouchmove='move'></image> -->
+      <!--选择按钮 -->
+      <template is="twoButton" data="{{focuslb,focuslbss,close_xinjian,publish,l,b,createName}}" />
+   </view>
+</template>

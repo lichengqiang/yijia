@@ -1,0 +1,14 @@
+<template name='first'>
+  <view class="popup_pages newly_buildss {{first_img?'vanish':'vanishs'}}">
+    <view class="pp_main absolute_center">
+      <image class="ppm_image" src="../../images/main_back.jpg" mode='aspectFill'></image>
+      <view class="ppm_button fc_whide bc_logo fn_name">
+        <form bindsubmit="first_close" report-submit='true' class='formclass'>
+          <button formType="submit" class='formclass'></button>
+        </form>
+        开启忆加之旅
+      </view>
+    </view>
+    <view class="pp_ps">点击该(?)可以查看更多详细教程~</view>
+  </view>
+</template>

@@ -1,0 +1,10 @@
+<template name='502'>
+<!-- 进入遮罩  "shade_502_show  显示class " --------  "shade_502_conceal  隐藏class" -->
+<view  class="shade_502 middle_array donghua  {{isNet=='in_line'? 'shade_502_conceal': ''}}  {{isNet=='out_line'? 'shade_502_show': ' '}}" hidden="{{isNet == 'init'}}">
+   <view class="tac donghua " >
+      <image mode="widthFix" src="../../images/img_502.png" style="height:0;"></image>
+      <view class="shade_502_text">网络出错了，请检查您的网络</view>
+      <view class="shade_502_button" bindtap="reload">重新加载页面</view>
+   </view>
+</view>
+</template>

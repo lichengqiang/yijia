@@ -1,0 +1,76 @@
+<template name="imgs">
+  <!-- -->
+  <wxs module="Processor">
+    module.exports = {
+      Processor: function(num) {
+        return parseInt(num)
+      }
+    }
+  </wxs>
+  <view class="details_picture about_array" wx:if='{{imgs.length>2}}'>
+    <block wx:for='{{Processor.Processor(imgs.length/3)}}' wx:key="index">
+      <block wx:if='{{index%2==0}}'>
+        <view class="dp_1 ">
+
+          <image class="dp_image b2_e1" mode="aspectFill" src="{{imgs[index*3]}}" data-img='{{imgs[index*3]}}' data-imgs='{{imgs}}' catchtap='big_img'></image>
+        </view>
+        <view class="dp_1 updown_arraytop">
+          <view class="dp_2 ">
+
+            <image class="dp_image b2_e1" mode="aspectFill" src="{{imgs[index*3+1]}}" data-img='{{imgs[index*3+1]}}' data-imgs='{{imgs}}' catchtap='big_img'></image>
+          </view>
+          <view class="dp_2 ">
+
+            <image class="dp_image b2_e1" mode="aspectFill" src="{{imgs[index*3+2]}}" data-img='{{imgs[index*3+2]}}' data-imgs='{{imgs}}' catchtap='big_img'></image>
+          </view>
+        </view>
+      </block>
+      <block wx:else='{{index%2==0}}'>
+        <view class="dp_1 updown_arraytop">
+          <view class="dp_2 ">
+
+            <image class="dp_image b2_e1" mode="aspectFill" src="{{imgs[index*3]}}" data-img='{{imgs[index*3]}}' data-imgs='{{imgs}}' catchtap='big_img'></image>
+          </view>
+          <view class="dp_2 ">
+
+            <image class="dp_image b2_e1" mode="aspectFill" src="{{imgs[index*3+1]}}" data-img='{{imgs[index*3+1]}}' data-imgs='{{imgs}}' catchtap='big_img'></image>
+          </view>
+        </view>
+        <view class="dp_1 ">
+
+          <image class="dp_image b2_e1" mode="aspectFill" src="{{imgs[index*3+2]}}" data-img='{{imgs[index*3+2]}}' data-imgs='{{imgs}}' catchtap='big_img'></image>
+        </view>
+      </block>
+    </block>
+    <block wx:if='{{imgs.length%3==1}}'>
+      <view class="dp_alone ">
+
+        <image class="dp_image b2_e1" mode="aspectFill" src="{{imgs[imgs.length-1]}}" data-img='{{imgs[imgs.length-1]}}' data-imgs='{{imgs}}' catchtap='big_img'></image>
+      </view>
+    </block>
+    <block wx:if='{{imgs.length%3==2}}'>
+      <view class="dp_1 ">
+
+        <image class="dp_image b2_e1" mode="aspectFill" src="{{imgs[imgs.length-2]}}" data-img='{{imgs[imgs.length-2]}}' data-imgs='{{imgs}}' catchtap='big_img'></image>
+      </view>
+      <view class="dp_1 ">
+
+        <image class="dp_image b2_e1" mode="aspectFill" src="{{imgs[imgs.length-1]}}" data-img='{{imgs[imgs.length-1]}}' data-imgs='{{imgs}}' catchtap='big_img'></image>
+      </view>
+    </block>
+  </view>
+  <!--2  -->
+  <view class="details_picture about_array" wx:if='{{imgs.length==2}}'>
+    <view class="dp_1 " wx:for='{{imgs}}' wx:key="index">
+
+      <image class="dp_image b2_e1" mode="aspectFill" src="{{item}}" data-img='{{item}}' data-imgs='{{imgs}}' catchtap='big_img'></image>
+    </view>
+  </view>
+  <!--1  -->
+  <view class="details_picture about_array" wx:if='{{imgs.length==1}}'>
+    <view class="dp_alone ">
+
+      <image class="dp_image b2_e1" mode="aspectFill" src="{{imgs[0]}}" data-img='{{imgs[0]}}' data-imgs='{{imgs}}' catchtap='big_img'></image>
+    </view>
+  </view>
+</template>

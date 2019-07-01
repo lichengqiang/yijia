@@ -1,0 +1,22 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/aboutus/aboutus",
+        "pages/details/details",
+        "pages/project/project",
+        "pages/dustbin/dustbin",
+        "pages/personal/personal",
+        "pages/pclogin/pclogin",
+        "pages/search/search"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "忆加",
+        "navigationBarTextStyle": "black"
+    },
+    "navigateToMiniProgramAppIdList": [
+        "wxbdc05488b4bce557"
+    ]
+    
+}

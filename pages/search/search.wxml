@@ -1,0 +1,53 @@
+<!-- index.wxml -->
+<view class="home newly_builds">
+   <!-- toubu -->
+   <view class="home_head home_margin about_array">
+      <view class="middle_array ty_xsx" catchtap="openColorBox">
+         <view class="color-box">
+            <view class="yj_{{choseColor}} color-box-size color-box-main" ></view>
+         </view>
+         <view class="search_text">{{textColor}}</view>
+         <form bindsubmit="acquire" report-submit='true' class='formclass'>
+            <button formType="submit" class='formclass'></button>
+         </form>   
+      </view>
+      <view class="section middle_array">
+         <input placeholder="请输入搜索内容" bindinput="handelInput" auto-focus />
+      </view>
+   </view>
+   <!-- 选项 -->
+   <view class="color-type left_array" wx:if="{{isShowColorBox}}">
+        
+      <view class="{{item.colorClass}} color-box-size" wx:for="{{searchType}}" wx:key="index" data-color="{{item.color || 'gray'}}" data-text="{{item.text}}" catchtap="handelChoseColor">
+          <form bindsubmit="acquire" report-submit='true' class='formclass'>
+            <button formType="submit" class='formclass'></button>
+         </form> 
+      </view>
+   </view>
+   <!-- 内容 -->
+   <view class="memory_set about_array" style=" flex-wrap:wrap;">
+      <!-- 未完成记忆组 -->
+      <view class="bc_superlight " wx:for='{{projects}}' wx:key="index" data-index='{{index}}'>
+         <navigator class="link" url='/pages/project/project?project_id={{item.id}}'>
+            <form bindsubmit="acquire" report-submit='true' class='formclass'>
+               <button formType="submit" class='formclass'></button>
+            </form>
+         </navigator>
+         <view class="click_cable">
+            <view class="yj_{{item.color}}"></view>
+         </view>
+         <view class="title_team updown_array">
+            <view class="tt_title fc_main">{{item.content}}</view>
+            <view class="tt_team restricted_single fc_light">
+               <open-data type="groupName" open-gid="{{item}}" wx:for='{{item.groups}}' wx:key="index"></open-data>
+            </view>
+         </view>
+         <view class="time_people about_array fc_light">
+            <view class="tp_time ">{{item.create_time}}</view>
+            <view class="tp_people  about_array">
+               <text>{{item.user_num}}</text> 人
+            </view>
+         </view>
+      </view>
+   </view>
+</view>

@@ -1,0 +1,93 @@
+@import "/personality.wxss";
+
+.home_head {
+  align-items: center;
+  position: relative;
+}
+
+.home_margin {
+  padding: 60rpx 0 20rpx;
+  border-bottom: 2rpx solid #e1e1e1;
+}
+
+.nickname {
+  font-size: 24rpx;
+}
+
+.title {
+  font-size: 48rpx;
+}
+
+.line {
+  width: 30rpx;
+  height: 2rpx;
+  margin: 0 10rpx;
+}
+
+.time_title {
+  padding: 40rpx 0;
+  text-align: right;
+}
+
+.main_content {
+  align-items: center;
+}
+
+.mc_center {
+  width: calc(100% - 250rpx);
+  padding-left: 20rpx;
+}
+
+.mt_20 {
+  margin-top: 20rpx;
+}
+
+.mlr_20 {
+  margin: 0 10rpx;
+}
+
+.mc_button {
+  width: 130rpx;
+  height: 60rpx;
+  border-radius: 100rpx;
+  align-items: center;
+  margin-left: 10rpx;
+}
+
+.ptb_30 {
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid #e1e1e1;
+  margin-bottom: 30rpx;
+}
+
+.conduct {
+  position: absolute;
+  width: 2rpx;
+  height: 30rpx;
+  top: 0rpx;
+  left: calc(50% - 1rpx);
+}
+
+.conduct1 {
+  position: absolute;
+  width: 2rpx;
+  height: 23rpx;
+  bottom: 0rpx;
+  left: 50%;
+  transform: rotate(-45deg);
+  transform-origin: center top;
+}
+
+.pt_icon {
+  width: 55rpx;
+  height: 55rpx;
+  border-radius: 50%;
+  position: relative;
+}
+.content_list{
+  padding-bottom:30rpx;
+}
+.content_list>view:nth-last-of-type(1) view{
+  border-bottom:0;
+  margin-bottom:0;
+}

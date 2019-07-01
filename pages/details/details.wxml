@@ -1,0 +1,314 @@
+<import src="../template/twobutton.wxml" />
+<import src="../template/imgs.wxml" />
+<import src="../template/describeTemplate.wxml" />
+<import src="../template/at.wxml" />
+<import src="../template/notebook.wxml" />
+<import src="../template/first.wxml" />
+<import src="../template/toOtherApp.wxml" />
+<import src="../template/imgs_del.wxml" />
+<import src="../template/loading.wxml" /> 
+<view class="{{lbtab1?'':'vague'}} {{tankuanghide?'':'vague'}} {{lbtab11?'':'vague'}} {{caozuorenyuan?'':'vague'}} {{the_first_landing?'vague':''}} {{first_img?'vague':''}}">
+   <scroll-view style="height:100vh;" scroll-y="true">
+      <view class="home project_hand">
+         <!-- 背景 -->
+         <!-- <view class="dynamic_back">
+            <view class="vague2">
+               <view class="db_circular1 {{Android?'android_anination1':'iphone_anination1'}}"></view>
+               <view class="db_circular2 {{Android?'android_anination2':'iphone_anination2'}}"></view>
+               <view class="db_circular3 {{Android?'android_anination3':'iphone_anination3'}}"></view>
+               <view class="white_mask"></view>
+            </view>
+         </view> -->
+         <view class="project_tab about_array">
+            <view class="left_array ">
+               <view class="head_portrait">
+                  <image class="head_portrait1" mode="aspectFill" src="{{initdata.action_user_headimgurl}}" wx:if='{{initdata.action_user_headimgurl}}'></image>
+                  <view class="No_avatar updown_array">
+                     <view class="bp_head1"></view>
+                     <view class="bp_shoulder1"></view>
+                  </view>
+               </view>
+               <view class="left_time fc_chaoh">{{initdata.time}}</view>
+            </view>
+            <view class="right_array operator" catchtap='caozuorenyuan' hidden='{{initdata.actions.length<=0}}'>
+               <!-- <view class="pl_button">
+            <view class="right_icon2">
+              <view class="ri_complete bc_ash"></view>
+              <view class="ri_complete1 bc_ash"></view>
+            </view>
+          </view> -->
+               <view class="nickname fc_light">操作人员</view>
+               <view class="line bc_light"></view>
+               <view class="head_portrait" wx:for='{{initdata.actions}}' wx:if='{{index<3}}' wx:key="index">
+                  <image class="head_portrait1" mode="aspectFill" src="{{initdata.users[item.user_id].headimgurl}}"></image>
+               </view>
+            </view>
+         </view>
+          <!-- 文本 -->
+      <view class="project_title fc_main heightguodu opacity_none" catchlongpress='logtitle' id='top_title' data-useid='{{initdata.action_user_id}}'><text>{{initdata.content}}<block wx:for='{{initdata.atusers}}' wx:key="index">@{{initdata.users[item].nickname}}</block></text></view>
+      <!-- 图片与文件 -->
+      <view class="main_add_picture" wx:if="{{action_update_files.length>0 || action_update_imgs.length>0}}">
+         <view class="uploading_file left_array ty_jz pr" wx:for="{{action_update_files}}" wx:key="index" data-file_path="{{item.url}}" bindtap="lookFile" wx:if="{{action_update_files.length>0}}">
+            <image class="ty_xsx" mode="widthFix" style="height:auto;" src="../../images/file.png"></image>
+            <view class="restricted_single">{{item.file_name}}</view>
+         </view>
+         <view class=" add_picture1 left_array" bindtap="big_img" data-img="{{action_update_imgs[index]}}" data-imgs="{{action_update_imgs}}" wx:if="{{action_update_imgs.length>0}}">
+            <view class="ap_spacing1" wx:for="{{action_update_imgs}}" wx:key="index">
+               <image class="dp_image" mode="aspectFill" src="{{item}}"></image>
+            </view>
+         </view>
+      </view>
+      </view>
+
+      <!-- 补充 -->
+      <view class="details_list">
+         <view class="updown_array sm_box">
+            <view class="s_memory middle_array bc_young" catchtap='floating_new'>
+               <view class="sm_button">
+                  <view class="plus_transverse"></view>
+                  <view class="plus_vertical"></view>
+               </view>
+            </view>
+            <view class="sm_title fc_light">补充记忆</view>
+         </view>
+         <!-- 补充 -->
+         <view>
+            <view class="supplement_main home" wx:for='{{initdata.extres}}' wx:key="index">
+               <view class="left_array">
+                  <view class="supplement_portrait">
+                     <image class="head_portrait1" mode="aspectFill" src="{{initdata.users[item.user_id].headimgurl}}" wx:if='{{initdata.users[item.user_id].headimgurl}}'></image>
+                     <view class="No_avatar updown_array" wx:else>
+                        <view class="sp_head"></view>
+                        <view class="sp_shoulder"></view>
+                     </view>
+                  </view>
+                  <view class="details_replenish_main">
+                     <view class="supplement_content bc_superlight" catchlongpress='to_change_the' data-id='{{item.id}}' data-user_id='{{item.user_id}}' data-key='{{index}}' data-attr='extres'>
+                        <view class="fc_main">
+                           <text>{{item.content}}<block wx:for='{{item.atusers}}' wx:key="index">@{{initdata.users[item].nickname}}</block></text>
+                        </view>
+                        <view hidden='{{item.copey_hidden}}' data-key='{{index}}' data-content='{{item.content}}' data-attr='extres' catchtap='confirm_copy' class='copy'>
+                           复制
+                        </view>
+                     </view>
+                     <!-- 文件 -->
+                     <view class="uploading_file left_array ty_jz pr file_details_bottom" wx:for="{{item.file_contents}}" wx:for-item="element" wx:key="index" data-file_path="{{element.url}}" bindtap="lookFile">
+                        <image class="ty_xsx" mode="widthFix" style="height:auto;" src="../../images/file.png"></image>
+                        <view class="restricted_single">{{element.file_name}}</view>
+                     </view>
+                     <!-- 图片 -->
+                     <template is="imgs" data="{{imgs:item.imgs,big_img}}" />
+                  </view>
+               </view>
+               <!-- 时间 -->
+               <view class="fc_light">
+                  <view class=" supplement_time about_array">
+                     <view>{{item.time}}</view>
+                     <!-- <view>
+                <view>删除</view>
+                <view>修改</view>
+              </view> -->
+                  </view>
+               </view>
+            </view>
+         </view>
+      </view>
+   </scroll-view>
+   <!-- 漂浮按钮 -->
+   <!--  -->
+   <view class="floating_new right_array2">
+      <view class="floating_right updown_array" catchtap='tankuanghide' data-action_id='{{action_id}}' data-user_id='{{initdata.action_user_id}}' data-current_problem='{{current_problem}}' wx:if='{{current_problem.status==2}}'>
+         <view class="floating_button updown_array bc_fallback btndelet">
+            <view class="or_operation">
+               <view class="fallback_whide">
+                  <view class="f_arrow"></view>
+               </view>
+            </view>
+         </view>
+         <view class="fn_connect bc_light"></view>
+         <view class="fn_text fc_light">回退状态</view>
+      </view>
+      <view class="floating_right updown_array" catchtap='tankuanghide' data-action_id='{{action_id}}' data-user_id='{{initdata.action_user_id}}' data-current_problem='{{current_problem}}' wx:else>
+         <view class="floating_button updown_array bc_green">
+            <view>
+               <view class="right_icon"></view>
+            </view>
+         </view>
+         <view class="fn_connect bc_light"></view>
+         <view class="fn_text fc_light">标记完成</view>
+      </view>
+      <view class="floating_right updown_array" wx:if='{{checked && version != 2}}'>
+         <view class="floating_button updown_array bc_superlight">
+            <view class="pl_button">
+               <view class="share_icon">
+                  <view class="share_complete bc_ash"></view>
+                  <view class="share_complete1 bc_ash"></view>
+               </view>
+               <!-- quan -->
+               <view class="circle1 bc_superlight"></view>
+               <view class="circle2 bc_superlight"></view>
+               <view class="circle3 bc_superlight"></view>
+            </view>
+            <button open-type="share" class='lbli_tz button_no'></button>
+         </view>
+         <view class="fn_connect bc_light"></view>
+         <view class="fn_text fc_light">分享</view>
+      </view>
+      <!-- 返回档案 -->
+      <view class="floating_right updown_array" catchtap='backtrack' wx:if='{{shared}}'>
+         <view class="floating_button updown_array bc_superlight">
+            <view class=" middle_array">
+               <view class="return_page"></view>
+            </view>
+            <button class='lbli_tz button_no'></button>
+         </view>
+         <view class="fn_connect bc_light"></view>
+         <view class="fn_text fc_light">返回档案</view>
+      </view>
+      <!-- 还原 -->
+      <view class="restore_delete middle_array bc_red" catchtap='revivification' wx:if='{{revivification}}'>
+         <view class="trash" style="position:relative;height:55rpx;">
+            <view class="updown_array ">
+               <view class="trash_top "></view>
+               <view class="trash_center "></view>
+               <view class="trash_bottom ">
+                  <view class="trash_bottom1 "></view>
+               </view>
+            </view>
+         </view>
+         <view class="fc_whide fn_name" style="margin-left:20rpx;">该项目已删除，点击还原</view>
+      </view>
+   </view>
+   <!-- 漂浮背景 -->
+   <view class="floating_background"></view>
+</view>
+<!-- 选择 -->
+<include src="../template/stateLayer.wxml" />
+<!-- 操作记录 -->
+<view class="newly_build tb_white {{caozuorenyuan?'toumingdu':'toumingdu1'}}" style="">
+   <!-- 操作人员 -->
+   <scroll-view scroll-y="true" class="operation_record">
+      <view class="or_main updown_array">
+         <view class="plain_button updown_array" wx:for='{{initdata.actions}}' wx:key="index">
+            <view class="floating_button updown_array ">
+               <!-- <image class="dp_image" mode="aspectFill" src="{{initdata.users[item.user_id].headimgurl}}"></image> -->
+            </view>
+            <view class="or_operation" wx:if='{{item.type==4 || item.type==0}}'>
+               <view class="fallback">
+                  <view class="f_arrow"></view>
+               </view>
+            </view>
+            <view class="or_operation" wx:if='{{item.type==2}}'>
+               <view class="right_icon oro_icon"></view>
+            </view>
+            <view class="or_operation" wx:if='{{item.type==1}}'>
+               <view class="right_icon oro_icony">
+                  <view class="half_of bc_gold"></view>
+               </view>
+            </view>
+            <view class="or_operation" wx:if='{{item.type==3}}'>
+               <view class="right_icon oro_icony">
+                  <view class="half_of bc_gold"></view>
+               </view>
+            </view>
+            <view class="fn_name fc_main or_mbottom">{{initdata.users[item.user_id].nickname}}</view>
+            <view class="fn_text fc_light">{{item.time}}</view>
+         </view>
+      </view>
+   </scroll-view>
+   <!-- 关闭按钮 -->
+   <view class="close_icon" catchtap='close_caozuo'></view>
+</view>
+<!-- 新建 修改action -->
+<view class="newly_build tb_white {{lbtab11?'toumingdu ':'toumingdu1'}}">
+   <view class="nb_input">
+      <textarea focus="{{true}}" bindfocus="smalla" bindblur="selecta" placeholder="输入您的记忆" fixed="true" maxlength="-1" bindinput='aite' auto-focus="true" wx:if="{{!lbtab11}}" value='{{action_update_content}}' data-content='action_update'></textarea>
+      <!-- <view catchtap="start_record">开始录音</view>
+      <view catchtap="stop_record">停止录音</view>
+      <view catchtap="play_record">播放录音</view> -->
+   </view>
+   <!-- 上传 -->
+   <view wx:if="{{uploadTypeBox}}" class="uploading_select middle_array">
+      <!-- 遮罩 -->
+      <view class="uploading_select_shade"></view>
+      <!--  -->
+      <view catchtap='upLoadImg' data-content='action_update'>
+         <view class="uploading_select_img uploading_select_img_lv middle_array">
+            <image mode="widthFix" style="height:auto;" src="../../images/image_icon.png"></image>
+         </view>
+         <view>上传图片</view>
+      </view>
+      <view catchtap="uploadFileAction" data-content='action_update'>
+         <view class="uploading_select_img middle_array">
+            <image mode="widthFix" style="height:auto;" src="../../images/file_icon.png"></image>
+         </view>
+         <view>上传文件</view>
+      </view>
+   </view>
+   <!-- 添加图片 -->
+   <scroll-view scroll-y="true" class="nb_addto">
+      <view class="add_picture about_array">
+         <!-- 文件 -->
+         <view class="uploading_file left_array ty_jz pr" wx:for="{{action_update_files}}" wx:key="index" bindlongpress="showDeleteBox" data-index="{{index}}">
+            <image class="ty_xsx" mode="widthFix" style="height:auto;" src="../../images/file.png"></image>
+            <view class="restricted_single">{{item.file_name}}</view>
+            <!-- 删除 -->
+            <view class="delete_image delete_image_file updown_array bc_red " wx:if="{{item.show_delete_box}}" catchtap="deleteFiles" data-index="{{index}}">
+               <view class="trash">
+                  <view class="updown_array">
+                     <view class="trash_top"></view>
+                     <view class="trash_center"></view>
+                     <view class="trash_bottom">
+                        <view class="trash_bottom1"></view>
+                     </view>
+                  </view>
+               </view>
+            </view>
+         </view>
+         <!-- 上传 -->
+         <view class="add_picture1 left_array">
+            <block wx:for="{{action_update_imgs}}" wx:key="index">
+               <view class="ap_spacing1 ">
+                  <image class="dp_image" mode="aspectFill" src="{{item}}" data-img='{{src}}' data-imgs='{{action_update_imgs}}' catchtap='big_img' bindlongpress='wake_up_to_delete' data-content='action_update' data-index='{{index}}'></image>
+                  <view class="delete_image updown_array bc_red " catchtap='dele_img' data-index='{{index}}' data-content='action_update' hidden='{{action_update_dele_btn[index]}}'>
+                     <view class="trash">
+                        <view class="updown_array">
+                           <view class="trash_top"></view>
+                           <view class="trash_center"></view>
+                           <view class="trash_bottom">
+                              <view class="trash_bottom1"></view>
+                           </view>
+                        </view>
+                     </view>
+                  </view>
+               </view>
+            </block>
+            <view class="ap_spacing1 bc_superlight" catchtap='handelShowUploadBox' hidden="{{action_update_imgs.length + action_update_files.length >= 9}}">
+               <view class="add_plus middle_array">
+                  <view class="ap_wide bc_ash"></view>
+                  <view class="ap_high bc_ash absolute_center"></view>
+               </view>
+            </view>
+
+         </view>
+      </view>
+   </scroll-view>
+   <!-- 选择按钮 -->
+   <template is="twoButton" data="{{focuslb:focuslba,focuslbss:focuslbssa,close_xinjian:'close_xinjian1',l:'action',b:'update',createName:'action_update'}}" />
+   <!-- @效果 -->
+   <template is="at" data="{{aitehide,aiteall,action_create:'action_update',aiteta,member,hideaite,at_name,all_at:action_update_at_all,at_headimg}}" />
+</view>
+<!-- 新建  描述 -->
+<template is="describe" data="{{lbtab1,small,select,aite,actionextre_create_content:'',aitehide,aiteta,member,hideaite,actionextre_create_imgs,upLoadImg,focuslb,focuslbss,close_xinjian,publish,l:'actionextre',b:'create',createName:'actionextre_create',at_name,all_at:actionextre_create_at_all,dele_btn:actionextre_create_dele_btn,at_headimg,jiahao:true,uploadFileAction,uploadTypeBox,handelShowUploadBox,files: actionextre_create_files,deleteFiles2,showDeleteBox2,start_record,stop_record,play_record}}"
+/>
+<!-- 修改描述 -->
+<template is="describe" data="{{lbtab1:uptab,small,select,aite,actionextre_create_content:actionextre_update_content,aitehide,aiteta,member,hideaite,actionextre_create_imgs:actionextre_update_imgs,upLoadImg,focuslb,focuslbss,close_xinjian:'close_uptab',publish,l:'actionextre',b:'update',createName:'actionextre_update',at_name,all_at:actionextre_update_at_all,dele_btn:actionextre_update_dele_btn,at_headimg,jiahao:true, uploadFileAction,uploadTypeBox,handelShowUploadBox,files: actionextre_update_files,deleteFiles2,showDeleteBox2,start_record,stop_record,play_record}}"
+/>
+<template is="first" data="{{first_img}}" />
+<template is="notebook" data="{{the_first_landing,current,index:2,go_back_index: true}}" />
+<template is="toOtherApp" data="{{is_to_other_app,big_img,mode,pic}}" />
+<template is="loading" data="{{isShowLoading}}" />
+<import src="../template/502.wxml" />
+<template is="502" data="{{isNet,reload}}" />
+<import src="../template/popup_loading.wxml" />
+<template is="popup_loading" data="{{popup_loading}}" />

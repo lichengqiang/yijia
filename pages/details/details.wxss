@@ -1,0 +1,299 @@
+@import "/personality.wxss";
+
+.main_text {
+   max-height: calc(100vh - 120rpx);
+   width: 100%;
+}
+
+.project_hand {
+   border-bottom: 2rpx solid #e1e1e1;
+   position: relative;
+   padding-bottom: 30rpx;
+}
+
+.project_title {
+   /* padding: 30rpx 0 0; */
+   font-size: 36rpx;
+   line-height: 1.6;
+}
+
+.project_tab {
+   align-items: center;
+   padding: 30rpx 0;
+}
+
+.nickname {
+   font-size: 24rpx;
+}
+
+.line {
+   width: 30rpx;
+   height: 2rpx;
+   margin: 0 0 0 10rpx;
+}
+
+.operator {
+   align-items: center;
+   position: relative;
+}
+
+.operator>.head_portrait {
+   margin-left: 10rpx;
+}
+
+.right_icon2 {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   transform: rotate(-45deg) translate(0%, -10%);
+   top: -45%;
+   left: 10%;
+}
+
+.ri_complete {
+   position: absolute;
+   width: 50%;
+   height: 4rpx;
+   bottom: 0;
+   left: 0;
+}
+
+.ri_complete1 {
+   position: absolute;
+   height: 25%;
+   width: 4rpx;
+   bottom: 0;
+   left: 0;
+}
+
+/*内容  */
+
+.s_memory {
+   width: 80rpx;
+   height: 80rpx;
+   border-radius: 50%;
+   align-items: center;
+}
+
+.sm_button {
+   width: 35rpx;
+   height: 35rpx;
+   flex-shrink: 0;
+   position: relative;
+   overflow: hidden;
+}
+
+.sm_box {
+   align-items: center;
+   padding: 50rpx 0;
+}
+
+.sm_title {
+   font-size: 24rpx;
+   margin-top: 20rpx;
+}
+
+.supplement_content {
+   padding: 20rpx 15rpx;
+   max-width: 550rpx;
+   font-size: 32rpx;
+   line-height: 1.6;
+   border-radius: 10rpx;
+   margin-left: 22rpx;
+   position: relative;
+   display: inline-block;
+}
+
+.supplement_content:after {
+   content: "";
+   width: 20rpx;
+   height: 20rpx;
+   background-color: #f7f7f7;
+   position: absolute;
+   top: 30rpx;
+   left: -10rpx;
+   transform: rotate(-45deg);
+}
+
+.supplement_time {
+   font-size: 24rpx;
+   width: 652rpx;
+   padding: 10rpx 0rpx 0rpx 102rpx;
+   border-radius: 100rpx 0 0 100rpx;
+}
+
+.supplement_main {
+   margin-bottom: 60rpx;
+}
+
+.details_list {
+   padding-bottom: 240rpx;
+}
+
+.details_picture {
+   width: 550rpx;
+   margin-left: 22rpx;
+   flex-wrap: wrap;
+}
+
+.dp_alone {
+   width: 100%;
+   position: relative;
+   margin-bottom: 10rpx;
+   height: 300rpx;
+}
+
+.dp_1 {
+   width: calc(50% - 5rpx);
+   height: 300rpx;
+   position: relative;
+   margin-bottom: 10rpx;
+}
+
+.dp_2 {
+   height: calc(50% - 5rpx);
+   width: 100%;
+   position: relative;
+}
+
+.dp_image {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+}
+
+.b2_e1 {
+   border: 2rpx solid #f1f1f1;
+   position: relative;
+   z-index: 1;
+   background-color: #f1f1f1;
+}
+
+/*添加  */
+
+.add_picture {
+   width: calc(100% - 60rpx);
+   flex-wrap: wrap;
+   margin: 0 auto;
+   margin-top: 120rpx;
+   margin-bottom: 220rpx;
+}
+
+.add_picture1 {
+   width: calc(100% + 7.5rpx);
+   flex-wrap: wrap;
+   margin: 0 auto;
+}
+
+.delete_image {
+   width: 100%;
+   height: 110rpx;
+   align-items: center;
+   justify-content: center;
+   overflow: hidden;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   background-color: rgba(233, 65, 62, 0.8);
+}
+
+.delete_image>view {
+   height: 55rpx;
+   position: relative;
+}
+
+/* .add_picture>view {
+  width: 100%;
+} */
+
+.ap_spacing1 {
+   width: calc(33.333% - 7.5rpx);
+   padding-top: calc(33.333% - 7.5rpx);
+   position: relative;
+   margin: 0 7.5rpx 7.5rpx 0;
+}
+
+.add_plus {
+   position: absolute;
+   align-items: center;
+   height: 100%;
+   width: 100%;
+   top: 0;
+   left: 0;
+}
+
+.ap_wide {
+   width: 100rpx;
+   height: 2rpx;
+}
+
+.ap_high {
+   height: 100rpx;
+   width: 2rpx;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+}
+
+.height0 {
+   padding: 0;
+   line-height: 0;
+   color: rgba(32, 57, 74, 0);
+   overflow: hidden;
+}
+
+/*返回档案  */
+
+.return_page {
+   width: 30rpx;
+   height: 30rpx;
+   border-top: 2rpx solid #999;
+   border-left: 2rpx solid #999;
+   transform: rotate(-45deg);
+   margin-left: 10rpx;
+}
+
+.floating_right {
+   align-items: center;
+   z-index: 102;
+   margin-left: 40rpx;
+}
+
+/*新增  */
+
+.bp_head1 {
+   width: 20rpx;
+   min-height: 25rpx;
+   border-radius: 100rpx;
+   border: 1rpx solid #fff;
+   margin-bottom: 8rpx;
+}
+
+.bp_shoulder1 {
+   width: 40rpx;
+   min-height: 40rpx;
+   border-radius: 100rpx;
+   border: 1rpx solid #fff;
+}
+
+.left_time {
+   font-size: 24rpx;
+   line-height: 60rpx;
+   margin-left: 10rpx;
+}
+
+/* 新增 */
+
+.main_add_picture {
+   padding:  30rpx 0 0;
+   /* border-bottom:2rpx solid #e1e1e1; */
+}
+.file_details_bottom{
+   margin-left:22rpx;
+   width:550rpx;
+}
+.details_replenish_main >view:nth-of-type(2){
+   margin-top: 20rpx;
+}

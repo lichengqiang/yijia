@@ -1,0 +1,44 @@
+<template name='notebook'>
+  <!--介绍  -->
+  <view class="course_main donghua {{the_first_landing?'vanish':'vanishs'}}">
+    <view>
+      <view class="fc_special title">使用帮助</view>
+    </view>
+    <swiper class="course_li" current='{{current}}' indicator-dots='true' bindchange='swiperchange'>
+      <swiper-item wx:for='{{6}}' wx:key="index">
+        <view class="cl_main">
+          <view class='about_bottom'>
+            <image class='pa_introduce' mode="aspectFill" src='../../images/brief_{{index+1}}.jpg'>
+            </image>
+            <image class='pa_introduce {{current==index?"":"pai_animation"}} donghua' mode="aspectFill" src='../../images/brief_{{index+1}}_donghua.png'>
+            </image>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+    <view class="button_position">
+      <form bindsubmit="close_handbook" report-submit='true' class='formclass' data-index='{{index}}'>
+        <button formType="submit" class='formclass'></button>
+      </form>
+      <view class="see_button updown_array bc_ash">
+        <view>
+          <view class="wrong_icon"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="course_button" hidden='{{button_hidden}}'>
+    <form bindsubmit="close_handbook" report-submit='true' class='formclass' data-index='{{index}}'>
+      <button formType="submit" class='formclass'></button>
+    </form>
+    <view class="cb_question middle_array">
+      <text>?</text>
+    </view>
+  </view>
+  <!-- 返回首页按钮 -->
+  <view class="button_home middle_array" wx:if="{{go_back_index}}">
+    <navigator class="link" url='/pages/index/index'  open-type="reLaunch">
+    </navigator> 
+      <image mode="widthFix" src="../../images/home.png" style="height:0;"></image>
+  </view>
+</template>

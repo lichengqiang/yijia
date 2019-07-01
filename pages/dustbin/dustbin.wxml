@@ -1,0 +1,92 @@
+<view class="home newly_builds">
+  <!--toubu-->
+  <view class="home_head home_margin about_array">
+    <view class="title fc_main">记忆遗失处</view>
+
+    <view class="home_head about_array">
+
+      <view class="head_portrait">
+        <image class='head_portrait1' src='{{userInfo.headimgurl}}' mode='aspectFit' wx:if='{{userInfo.headimgurl}}'></image>
+        <view class="No_avatar updown_array" wx:else>
+          <view class="a_head"></view>
+          <view class="shoulder"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--内容列表  -->
+  <view class="content_list">
+    <!--时间  -->
+    <view class="fn_bloud time_title fc_main">
+      <!-- 2017-09-25 -->
+    </view>
+    <!--内容  -->
+    <view wx:for='{{initdata.projects}}'>
+      <block wx:if='{{item.status==2}}'>
+        <view class="left_array main_content">
+          <view class="floating_button updown_array bc_green btned ">
+            <view>
+              <view class="right_icon"></view>
+            </view>
+          </view>
+          <view class="mc_center">
+            <view class="fn_name restricted_single fc_main">{{item.content}}</view>
+            <!-- <view class="fn_text fc_light mt_20">{{item.create_time}}</view> -->
+          </view>
+          <view class="bc_superlight mc_button middle_array" catchtap='project_redel' data-project_id='{{item.id}}'>
+            <view class="fn_name fc_special">还原</view>
+          </view>
+        </view>
+        <!--上传人员  -->
+        <view class="left_array main_content ptb_30 fc_main  fn_main">
+          <view class="home_head about_array left_array main_content">
+            <view class="head_portrait">
+              <!-- <view class="No_avatar updown_array">
+                <view class="a_head"></view>
+                <view class="shoulder"></view>
+              </view> -->
+              <image class="head_portrait1" mode="aspectFill" src="{{initdata.users[item.user_id].headimgurl}}"></image>
+            </view>
+            <view class="mlr_20 fc_special">{{initdata.users[item.user_id].nickname}}</view>
+          </view>
+          <view>于{{item.create_time}}发布</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="left_array main_content">
+          <view class="floating_button updown_array bc_ash btned ">
+            <view class="pt_icon">
+              <view class="conduct bc_white"></view>
+              <view class="conduct1  bc_white"></view>
+            </view>
+          </view>
+          <view class="mc_center">
+            <view class="fn_name restricted_single fc_main">{{item.content}}</view>
+            <!-- <view class="fn_text fc_light mt_20">{{item.create_time}}</view> -->
+          </view>
+          <view class="bc_superlight mc_button middle_array" catchtap='project_redel' data-project_id='{{item.id}}'>
+            <view class="fn_name fc_special">还原</view>
+          </view>
+        </view>
+        <!--上传人员  -->
+        <view class="left_array main_content ptb_30 fc_main  fn_main">
+          <view class="home_head about_array left_array main_content">
+            <view class="head_portrait">
+              <!-- <view class="No_avatar updown_array">
+                <view class="a_head"></view>
+                <view class="shoulder"></view>
+              </view> -->
+              <image class="head_portrait1" mode="aspectFill" src="{{initdata.users[item.user_id].headimgurl}}"></image>
+            </view>
+            <view class="mlr_20 fc_special">{{initdata.users[item.user_id].nickname}}</view>
+          </view>
+          <view>于{{item.create_time}}发布</view>
+        </view>
+      </block>
+    </view>
+    <!--  -->
+
+  </view>
+</view>
+<import src="../template/502.wxml" />
+<template is="502" data="{{isNet,reload}}" />

@@ -1,0 +1,90 @@
+<!--选择  -->
+<view class="newly_build tb_white newly_builds {{tankuanghide?'toumingdu':'toumingdu1'}}" style="">
+  <!--选择按钮 -->
+
+  <view class="about_array newly_builds allbtn select_center">
+    <view class="plain_button updown_array btned {{tankuanghide?'btneds':'btneds1'}} {{delettankuang?'':'btneds'}} {{partlyCompleted?'':'btneds'}} {{rollback? '': 'btneds'}}" catchtap='finishUp' hidden='{{current_problem.status=="2"}}'>
+      <view class="floating_button m35_zhonghe updown_array bc_green btndelet {{tankuanghide?'width0':''}} {{delettankuang?'':'width0'}} {{partlyCompleted?'':'width0'}} {{rollback? '': 'width0 '}} ">
+        <view>
+          <view class=" right_icon "></view>
+        </view>
+      </view>
+      <view class="plain_button updown_array complete_text ">
+        <view class="fn_connect bc_light "></view>
+        <view class="fn_text fc_light restricted_single ">彻底完成</view>
+      </view>
+    </view>
+
+    <!--回退  -->
+    <view class="plain_button updown_array btnbfed {{tankuanghide? 'btneds': 'btneds1'}} {{finishUp? 'delettankuang': 'btneds'}} {{partlyCompleted? '': 'btneds'}} {{delettankuang? '': 'btneds'}}" hidden='{{current_problem.status=="0"}}' catchtap='rollback'>
+      <view class="floating_button m35_zhonghe updown_array bc_fallback btndelet {{tankuanghide? 'width0': ''}} {{finishUp? '': 'width0'}} {{delettankuang? '': 'width0'}}">
+        <view class="or_operation">
+          <view class="fallback_whide">
+            <view class="f_arrow"></view>
+          </view>
+        </view>
+      </view>
+      <view class="plain_button updown_array complete_text ">
+        <view class="fn_connect bc_light "></view>
+        <view class="fn_text fc_light restricted_single " hidden='{{!rollback}}'>取消完成</view>
+        <view class="pr " hidden='{{rollback}}'>
+          <view class="fn_text fc_light restricted_single ">确认取消完成？</view>
+          <view class="choose_whether about_array ">
+            <view catchtap='rollback_is' class="fc_red ">确认</view>
+            <view catchtap='rollback_no' class="fc_light ">取消</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="plain_button updown_array btnbfed {{tankuanghide? 'btneds': 'btneds1'}} {{delettankuang? '': 'btneds'}} {{finishUp? 'delettankuang': 'btneds'}} " catchtap='partlyCompleted' hidden='{{current_problem.status=="1" || current_problem.status=="2"}}'>
+      <view class="floating_button m35_zhonghe updown_array bc_naturals btndelet {{tankuanghide? 'width0': ''}} {{delettankuang? '': 'width0'}} {{finishUp? '': 'width0'}}">
+        <view>
+          <view class="right_icon ">
+            <view class="half_of bc_white "></view>
+          </view>
+        </view>
+      </view>
+      <view class="plain_button updown_array complete_text ">
+        <view class="fn_connect bc_light "></view>
+        <view class="fn_text fc_light restricted_single ">部分完成</view>
+      </view>
+    </view>
+    <view class="plain_button updown_array btndelet {{tankuanghide? 'btneds': 'btneds1'}} {{finishUp? 'delettankuang': 'btneds'}} {{partlyCompleted? '': 'btneds'}} {{rollback? '': 'btneds'}}" catchtap='delettankuang' wx:if='{{del_button_hide}}'>
+      <view class="floating_button m35_zhonghe updown_array bc_red btndelet {{tankuanghide? 'width0': ''}} {{finishUp? '': 'width0'}} {{partlyCompleted? '': 'width0'}} {{rollback? '': 'width0'}} ">
+        <view class="trash ">
+          <view class="updown_array ">
+            <view class="trash_top "></view>
+            <view class="trash_center "></view>
+            <view class="trash_bottom ">
+              <view class="trash_bottom1 "></view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="plain_button updown_array complete_text ">
+        <view class="fn_connect bc_light "></view>
+        <view class="fn_text fc_light restricted_single " hidden='{{!delethide}}'>{{delettext}}</view>
+        <view class="pr " hidden='{{delethide}}'>
+          <view class="fn_text fc_light restricted_single ">确认要删除该记忆？</view>
+          <view class="choose_whether about_array ">
+            <view catchtap='deletshi' class="fc_red ">删除</view>
+            <view catchtap='deletfou' class="fc_light ">取消</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--关闭按钮  -->
+  <view class="close_icon" catchtap='closebtn'></view>
+  <!--画布  -->
+  <block>
+    <view class="updown_array explain_gesture" hidden='{{current_problem.status=="2"}}'>
+      <view class="right_icon ri_gesture "></view>
+      <view class="fc_light fn_text ">在上方用手画出对号也可直接完成该项目,马上试试吧~</view>
+    </view>
+    <view class="canvas_position" hidden='{{current_problem.status=="2"}}'>
+      <canvas fixed="true" canvas-id="id-gesture-lock" class="gesture-lock" bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd" hidden='{{tankuanghide || current_problem.status=="2"}}' disable-scroll='true'>
+      </canvas>
+    </view>
+  </block>
+</view>

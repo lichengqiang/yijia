@@ -1,0 +1,50 @@
+<template name='delete_icon'>
+   <image class="dp_image" mode="aspectFill" src="{{src}}" data-img='{{src}}' data-imgs='{{imgs}}' catchtap='big_img' bindlongpress='wake_up_to_delete' data-content='{{createName}}' data-index='{{indexz}}'></image>
+   <!-- 删除 -->
+   <view class="delete_image updown_array bc_red " catchtap='dele_img' data-index='{{indexz}}' data-content='{{createName}}' hidden='{{dele_button_hide}}'>
+      <view class="trash">
+         <view class="updown_array">
+            <view class="trash_top"></view>
+            <view class="trash_center"></view>
+            <view class="trash_bottom">
+               <view class="trash_bottom1"></view>
+            </view>
+         </view>
+      </view>
+   </view>
+   <!-- end -->
+</template>
+<template name="imgs_del">
+
+   <block>
+      <view class="uploading_file left_array ty_jz pr" wx:for='{{files}}' wx:if='{{files.length>0}}' wx:key="index" bindlongpress="showDeleteBox2" data-index="{{index}}" data-content='{{createName}}'>
+         <image class="ty_xsx" mode="widthFix" style="height:auto;" src="../../images/file.png"></image>
+         <view class="restricted_single">{{item.file_name}}</view>
+         <!-- 删除 -->
+         <view class="delete_image delete_image_file updown_array bc_red" wx:if="{{item.show_delete_box}}" catchtap="deleteFiles2" data-index="{{index}}" data-content='{{createName}}'>
+            <view class="trash">
+               <view class="updown_array">
+                  <view class="trash_top"></view>
+                  <view class="trash_center"></view>
+                  <view class="trash_bottom">
+                     <view class="trash_bottom1"></view>
+                  </view>
+               </view>
+            </view>
+         </view>
+      </view>
+   </block>
+   <view class="add_picture1 left_array">
+      <block wx:for='{{imgs}}' wx:if='{{imgs.length>0}}' wx:key="index" >
+         <view class="ap_spacing1">
+            <template is="delete_icon" data="{{imgs,src:imgs[index],createName,indexz:index,dele_button_hide:dele_btn[index]}}" />
+         </view>
+      </block>
+      <view class="ap_spacing1 bc_superlight" catchtap='handelShowUploadBox' hidden="{{(files.length + imgs.length) >= 9}}">
+         <view class="add_plus middle_array">
+            <view class="ap_wide bc_ash"></view>
+            <view class="ap_high bc_ash absolute_center"></view>
+         </view>
+      </view>
+   </view>
+</template>

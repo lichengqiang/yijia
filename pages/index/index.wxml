@@ -1,0 +1,273 @@
+<!-- index.wxml -->
+<import src="../template/notebook.wxml" />
+<import src="../template/toOtherApp.wxml" />
+<import src="../template/first.wxml" />
+<view class="home newly_builds {{lbtab11?'':'vague'}} {{the_first_landing?'vague':''}} {{first_img?'vague':''}}" catchtouchstart='{{trtrt}}'>
+   <!-- toubu -->
+   <view class="home_head home_margin about_array">
+      <view class="color-box ty_xsx">
+         <view class="title fc_special middle_array lib-pr" bindtap="openColorBox">
+            <form bindsubmit="acquire" report-submit='true' class='formclass'>
+               <button formType="submit" class='formclass'></button>
+            </form>
+            <view>记忆档案</view>
+            <view class="record_arrows"></view>
+         </view>
+         <!-- <view class="yj_{{choseColor}} color-box-size" catchtap="openColorBox"></view> -->
+      </view>
+      <view class="pr ty_xsx">
+         <navigator class="link" hover-class="none" url='/pages/search/search'>
+            <form bindsubmit="acquire" report-submit='true' class='formclass'>
+               <button formType="submit" class='formclass'></button>
+            </form>
+         </navigator>
+         <view class="middle_array search_main">
+            <view class="search_icon"></view>
+            <view class="search_text">搜索</view>
+         </view>
+      </view>
+      <view class="home_head about_array" catchtap=''>
+         <view class="nickname fc_light restricted_single">{{userInfo.wechatauth=='0'?'点击授权':userInfo.nickname}}</view>
+         <button open-type='getUserInfo' bindgetuserinfo='authorization' class='lbli_tz button_no' wx:if='{{userInfo.wechatauth=="0"}}'></button>
+         <view class="line bc_light"></view>
+         <view class="head_portrait ty_xsx">
+            <view wx:if='{{userInfo.wechatauth=="0"}}'>
+               <view class="No_avatar updown_array">
+                  <view class="a_head"></view>
+                  <view class="shoulder"></view>
+               </view>
+            </view>
+            <view wx:if='{{userInfo.wechatauth!=="0"}}'>
+               <image class='head_portrait1' src='{{userInfo.headimgurl}}' mode='aspectFill'></image>
+               <navigator class='head_portrait1 button_no' url='/pages/personal/personal'>
+                  <form bindsubmit="acquire" report-submit='true' class='formclass'>
+                     <button formType="submit" class='formclass'></button>
+                  </form>
+               </navigator>
+            </view>
+         </view>
+      </view>
+   </view>
+   <!-- 选项 -->
+   <view class="color-type left_array" wx:if="{{isShowColorBox}}">
+      <view class="{{item.colorClass}} color-box-size" wx:for="{{searchType}}" wx:key="index" data-color="{{item.color}}" catchtap="handelChoseColor"></view>
+   </view>
+   <!-- 内容 -->
+   <view class="memory_set about_array" wx:if="{{ifHasData == 'hasData'}}">
+      <!-- 未完成记忆组群 -->
+      <view class="bc_superlight memory_group conceal2 {{lbcombine?'':'conceal1'}}" catchtap='disperse' wx:if="{{hasNotCompleteArr && index < notCompleteArr.length}}" wx:for="{{projects.notcomplete}}" data-color="{{item.color}}" wx:key="index" style='{{lbstyleing[index]}}'>
+         <view class="title_team updown_array">
+            <view class="tt_title fc_main">
+               <view class="restricted_single">{{ projects.notcomplete[index].content}}</view>
+               等项目
+            </view>
+            <view class="tt_team restricted_single fc_light">
+               来自{{ projects.notcomplete[index].groups}}个微信群
+            </view>
+         </view>
+         <view class="time_people about_array fc_light">
+            <view class="tp_time ">记忆组</view>
+            <view class="tp_people  about_array">
+               <text class="fc_special">{{ projects.notcomplete[index].num}}</text> 组
+            </view>
+         </view>
+      </view>
+      <!-- 未完成记忆组 -->
+      <view class="bc_superlight {{lbcombine?'':'conceal'}}" style='{{lbstyleing[index]}}' wx:for='{{projects.notcomplete}}' wx:key="this*" catchlongpress='catchlongtaping' data-index='{{index}}' data-atrr_name='notcomplete' wx:if="{{index >= notCompleteArr.length}}">
+         <navigator class="link" url='/pages/project/project?project_id={{item.id}}'>
+            <form bindsubmit="acquire" report-submit='true' class='formclass'>
+               <button formType="submit" class='formclass'></button>
+            </form>
+         </navigator>
+         <view class="click_cable" catchtap='combine' data-color="{{item.color}}">
+            <view class="yj_{{item.color}}"></view>
+         </view>
+         <view class="title_team updown_array">
+            <view class="tt_title fc_main">{{item.content}}</view>
+            <view class="tt_team restricted_single fc_light">
+               <open-data type="groupName" open-gid="{{item}}" wx:for='{{item.groups}}' wx:key="index"></open-data>
+            </view>
+         </view>
+         <view class="time_people about_array fc_light">
+            <view class="tp_time ">{{item.create_time}}</view>
+            <view class="tp_people  about_array">
+               <text>{{item.user_num}}</text> 人
+            </view>
+         </view>
+         <view hidden='{{item.hide}}' class="{{item.hide?'':'addclass'}}" catchtap='hideProjectsHandelPopup'>
+            <view class="delete_operation">
+               <view class="top_icon updown_array" catchtap='project_top' data-project_id='{{item.id}}'>
+                  <view class="top_main">
+                     <view class="top_arrow"></view>
+                     <view class="top_arrowline"></view>
+                  </view>
+                  <text class="fc_light1 fn_text">置顶</text>
+                  <form bindsubmit="acquire" report-submit='true' class='formclass'>
+                     <button formType="submit" class='formclass'></button>
+                  </form>
+               </view>
+               <!-- 分组 -->
+               <view class='grouping_button middle_array' catchtap='sectionalization' data-index='{{index}}' data-project_id='{{item.id}}' data-atrr_name='notcomplete'>
+                  <view class="yj_{{item.color}}"></view>
+                  <form bindsubmit="acquire" report-submit='true' class='formclass'>
+                     <button formType="submit" class='formclass'></button>
+                  </form>
+               </view>
+               <!-- 删除 -->
+               <view class="delete_image updown_array bc_red " catchtap='project_del' data-project_id='{{item.id}}'>
+                  <view class="trash">
+                     <view class="updown_array">
+                        <view class="trash_top"></view>
+                        <view class="trash_center"></view>
+                        <view class="trash_bottom">
+                           <view class="trash_bottom1"></view>
+                        </view>
+                     </view>
+                  </view>
+                  <form bindsubmit="acquire" report-submit='true' class='formclass'>
+                     <button formType="submit" class='formclass'></button>
+                  </form>
+               </view>
+               <!-- end -->
+            </view>
+         </view>
+         <view hidden='{{item.group_hide}}' class="delete_operation middle_array " catchtap="hideColorBox">
+            <view class="ty_khh middle_array">
+               <view class=" popup_color_box " bindatp="changeColor" data-color="{{item.color}}" catchtap="changeColor" wx:for="{{searchType}}" wx:key="index" data-index="{{index}}">
+                  <view class="{{item.colorClass}}"></view>
+               </view>
+            </view>
+         </view>
+      </view>
+      <!-- 完成记忆组群 -->
+      <view class="bc_superlight memory_groupcomplete conceal2 {{lbcombineed?'':'conceal1'}}" style='{{lbstyled[0]}}' catchtap='dispersed' wx:if='{{projects.complete.length>1}}'>
+         <view class="title_team updown_array">
+            <view class="tt_title fc_main">
+               <view class="restricted_single">{{projects.completesum.content}}</view>
+               等项目
+            </view>
+            <view class="tt_team restricted_single fc_light">
+               来自{{projects.completesum.groups}}个微信群
+            </view>
+         </view>
+         <view class="time_people about_array fc_light">
+            <view class="tp_time ">记忆组</view>
+            <view class="tp_people  about_array">
+               <text class="fc_special">{{projects.completesum.num}}</text> 组
+            </view>
+         </view>
+         <view class="complete_project middle_array">
+            <view class="correct">
+               <view class="c_long"></view>
+               <view class="c_short"></view>
+            </view>
+         </view>
+      </view>
+      <!-- 完成记忆组 -->
+      <view class="bc_superlight {{lbcombineed?'':'conceal'}}" style='{{lbstyled[index]}}' wx:for='{{projects.complete}}' data-atrr_name='complete' data-index='{{index}}' catchlongpress='catchlongtaping' wx:key="index">
+         <view class="click_cable " catchtap='combineed' data-color="white">
+            <view class="yj_{{item.color}}"></view>
+         </view>
+         <view class="title_team updown_array">
+            <view class="tt_title fc_main">{{item.content}}</view>
+            <view class="tt_team restricted_single fc_light">
+               <open-data type="groupName" open-gid="{{item}}" wx:for='{{item.groups}}' wx:key="index"></open-data>
+            </view>
+         </view>
+         <view class="time_people about_array fc_light">
+            <view class="tp_time ">{{item.create_time}}</view>
+            <view class="tp_people  about_array">
+               <text class="">{{item.user_num}}</text> 人
+            </view>
+         </view>
+         <!-- 完成效果 -->
+         <view class="complete_project middle_array">
+            <view class="correct">
+               <view class="c_long"></view>
+               <view class="c_short"></view>
+            </view>
+         </view>
+         <view hidden='{{item.hide}}' class="{{item.hide?'':'addclass'}}">
+            <view class="delete_operation">
+               <!-- 置顶图标 -->
+               <view class="top_icon updown_array" catchtap='project_top' data-project_id='{{item.id}}'>
+                  <view class="top_main">
+                     <view class="top_arrow"></view>
+                     <view class="top_arrowline"></view>
+                  </view>
+                  <text class="fc_light1 fn_text">置顶</text>
+               </view>
+               <!-- 删除 -->
+               <view class="delete_image updown_array bc_red " catchtap='project_del' data-project_id='{{item.id}}'>
+                  <view class="trash">
+                     <view class="updown_array">
+                        <view class="trash_top"></view>
+                        <view class="trash_center"></view>
+                        <view class="trash_bottom">
+                           <view class="trash_bottom1"></view>
+                        </view>
+                     </view>
+                  </view>
+               </view>
+               <!-- end -->
+            </view>
+         </view>
+         <navigator class="link" url='/pages/project/project?project_id={{item.id}}'>
+            <form bindsubmit="acquire" report-submit='true' class='formclass'>
+               <button formType="submit" class='formclass'></button>
+            </form>
+         </navigator>
+      </view>
+      <view style="width:100%;height:240rpx;{{emptyview}}"></view>
+   </view>
+   <!-- 漂浮按钮 -->
+   <view class="floating_new updown_array">
+      <form bindsubmit="floating_new" report-submit='true' class='formclass'>
+         <button formType="submit" class='formclass'></button>
+      </form>
+      <view class="floating_button updown_array bc_young">
+         <view>
+            <view class="pen_top"></view>
+            <view class="pen_center"></view>
+            <view class="pen_button"></view>
+         </view>
+      </view>
+      <view class="fn_connect bc_light"></view>
+      <view class="fn_text fc_light">新建档案</view>
+   </view>
+   <view class='kongview' hidden='{{kongview}}' catchtap='xiaoshi'></view>
+</view>
+<include src="../template/title.wxml" />
+<!-- 改版弹出页 -->
+<template is="first" data="{{first_img}}" />
+<template is="toOtherApp" data="{{is_to_other_app,big_img,mode,pic}}" />
+<!-- end -->
+<template is="notebook" data="{{the_first_landing,current,go_back_index:false}}" />
+
+<!-- 老用户弹窗提示 vanishs vanish -->
+<view class="course_main middle_array donghua   {{(ifHasData =='hasData' && userInfo.is_pc == 0) ? 'vanish' : 'vanishs'}}">
+   <view class="index_regular">
+      <image src="/images/new_user.png" style="height:0;" mode="widthFix"></image>
+      <view>繁琐的记忆隧道之外，有更好的世界</view>
+      <view>登陆忆加pc端
+         <text>yijia.im</text>同步管理</view>
+      <!-- 关闭按钮 -->
+      <view class="index_regular_button" bindtap="i_know">我知道了</view>
+   </view>
+</view>
+<!-- 无项目时，默认效果 -->
+<view class="index_regular index_no_content absolute_center {{lbtab11?'':'vague'}} {{the_first_landing?'vague':''}} {{first_img?'vague':''}}" wx:if="{{ifHasData == 'hasNoData'}}">
+   <image src="/images/new_user.png" style="height:0;" mode="widthFix"></image>
+   <view>繁琐的记忆隧道之外，有更好的世界</view>
+   <view>登陆忆加pc端
+      <text>yijia.im</text>同步管理</view>
+   <!-- 关闭按钮 -->
+   <view class="index_regular_button" bindtap="i_know">新建一个档案</view>
+   <form bindsubmit="floating_new" report-submit='true' class='formclass'>
+      <button formType="submit" class='formclass'></button>
+   </form>
+</view>
+<import src="../template/502.wxml" />
+<template is="502" data="{{isNet,reload}}" />
+<import src="../template/popup_loading.wxml" />
+<template is="popup_loading" data="{{popup_loading}}" />

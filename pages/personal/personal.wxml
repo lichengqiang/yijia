@@ -1,0 +1,82 @@
+<view class="pr">
+  <!--背景  -->
+  <view class="top_portrait updown_array ">
+    <view class="big_portrait ">
+       <image class="head_portrait1" mode="aspectFill" src="{{userInfo.headimgurl}}" wx:if='{{userInfo.headimgurl}}'></image> 
+      <!-- <view class="No_avatar updown_array">
+        <view class="bp_head"></view>
+        <view class="bp_shoulder"></view>
+      </view> -->
+    </view>
+    <view class="name_pig fc_light1 fn_name">{{userInfo.nickname}}</view>
+  </view>
+  <view class="about_array data_group">
+    <view class="updown_array dg_column home">
+      <view class="fc_light fn_text">参加记忆组</view>
+      <view class="fc_main fn_data">{{initdata.project_num}}
+        <text class="fc_light fn_text">项</text>
+      </view>
+    </view>
+    <view class="updown_array dg_column home">
+      <view class="fc_light fn_text">同步记忆</view>
+      <view class="fc_main fn_data">{{initdata.action_num}}
+        <text class="fc_light fn_text">条</text>
+      </view>
+    </view>
+    <view class="updown_array dg_column home">
+      <view class="fc_light fn_text">达成时间</view>
+      <view class="fc_main fn_data">{{initdata.deal_time}}
+        <text class="fc_light fn_text">小时</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="home">
+    <view class="li_maincontent left_array">
+      <view>
+        <!--图标  -->
+        <navigator class="central_options bc_superlight" url='/pages/dustbin/dustbin'>
+          <view class="trash">
+            <view class="updown_array">
+              <view class="trash_top"></view>
+              <view class="trash_center"></view>
+              <view class="trash_bottom">
+                <view class="trash_bottom1"></view>
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <!--文字  -->
+        <view class="lm_title fc_light fn_text">记忆遗失处</view>
+      </view>
+      <view>
+        <!--图标  -->
+        <navigator class="central_options bc_young" url='/pages/aboutus/aboutus'>
+          <view class="trash">
+            <view class="updown_array">
+              <view class="pen_top"></view>
+              <view class="pen_button"></view>
+            </view>
+          </view>
+        </navigator>
+        <!--文字  -->
+        <view class="lm_title fc_light fn_text">关于YIJIA</view>
+      </view>
+      
+    </view>
+  </view>
+  <view class="dynamic_back">
+    <view class="vague2">
+      <view class="db_circular1 {{Android?'android_anination1':'iphone_anination1'}}"></view>
+      <view class="db_circular2 {{Android?'android_anination2':'iphone_anination2'}}"></view>
+      <view class="db_circular3 {{Android?'android_anination3':'iphone_anination3'}}"></view>
+    </view>
+  </view>
+<view class="index_regular  ">
+   登陆忆加pc端
+      <text class="class_url">yijia.im</text>同步管理
+   <!-- 关闭按钮 -->
+</view>
+</view>
+<import src="../template/502.wxml" />
+<template is="502" data="{{isNet,reload}}" />
